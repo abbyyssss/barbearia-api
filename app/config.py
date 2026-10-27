@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     jwt_expire_minutes: int = 120
     cors_origins: str = "http://localhost:5500,http://127.0.0.1:5500"
     timezone: str = "America/Sao_Paulo"
+    # Caminho do certificado (CA) do banco na nuvem. Deixe vazio para o MySQL local.
+    db_ssl_ca: str | None = None
 
     @property
     def origins(self) -> list[str]:
