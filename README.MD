@@ -87,7 +87,7 @@ Para usar um MySQL na nuvem (ex.: Aiven), rode o `schema_nuvem.sql`, aponte o `D
 
 - [x] Rotas públicas e painel com login
 - [x] Proteção contra horários duplicados
-- [ ] Publicar a API na nuvem
+- [x] Publicar a API na nuvem
 - [ ] Testes automatizados
 - [ ] Limite de tentativas de login
 
