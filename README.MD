@@ -1,5 +1,7 @@
 # Navalha & Co. – API de agendamento
 
+[![Testes](https://github.com/abbyyssss/barbearia-api/actions/workflows/tests.yml/badge.svg)](https://github.com/abbyyssss/barbearia-api/actions/workflows/tests.yml)
+
 API REST do sistema de agendamento da barbearia fictícia **Navalha & Co.**, feita com Python, FastAPI e MySQL. Ela cuida das regras de horários, do cadastro dos agendamentos e do login do painel.
 
 🔗 **Site que usa esta API:** [barbearia-agendamento](https://github.com/abbyyssss/barbearia-agendamento)
