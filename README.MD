@@ -3,6 +3,7 @@
 API REST do sistema de agendamento da barbearia fictícia **Navalha & Co.**, feita com Python, FastAPI e MySQL. Ela cuida das regras de horários, do cadastro dos agendamentos e do login do painel.
 
 🔗 **Site que usa esta API:** [barbearia-agendamento](https://github.com/abbyyssss/barbearia-agendamento)
+🔗 **API no ar (documentação interativa):** https://barbearia-api-s291.onrender.com/docs
 
 > Projeto de portfólio. A barbearia e os dados são fictícios.
 
@@ -79,9 +80,19 @@ Precisa de Python 3.10+ e MySQL.
    ```
 4. Abra http://127.0.0.1:8000/docs
 
-## ☁️ Banco na nuvem
+## ☁️ Publicação
 
-Para usar um MySQL na nuvem (ex.: Aiven), rode o `schema_nuvem.sql`, aponte o `DATABASE_URL` para o servidor e informe o certificado em `DB_SSL_CA`.
+```
+Site (GitHub Pages) → API (Render) → Banco MySQL (Aiven)
+```
+
+- **API:** serviço web no Render (plano gratuito), com deploy automático a cada `git push` na `main`.
+- **Banco:** MySQL gerenciado na Aiven, com conexão criptografada (SSL) usando o certificado em `certs/`.
+- **Configuração:** variáveis de ambiente no Render (`DATABASE_URL`, `JWT_SECRET`, `DB_SSL_CA`, `CORS_ORIGINS`). Nada de segredo vai para o repositório.
+
+Para usar um MySQL na nuvem em outro ambiente, rode o `schema_nuvem.sql`, aponte o `DATABASE_URL` para o servidor e informe o certificado em `DB_SSL_CA`.
+
+> No plano gratuito, a API dorme depois de um tempo sem uso, e a primeira requisição pode demorar cerca de 1 minuto.
 
 ## 🗺️ Próximos passos
 
