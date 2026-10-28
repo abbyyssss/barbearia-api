@@ -39,6 +39,7 @@ Com a API rodando, a documentação interativa fica em `/docs`.
 - **Segredos fora do código:** senha do banco e chave do token ficam em variáveis de ambiente (`.env`, que não vai para o GitHub).
 - **CORS restrito:** só os endereços listados em `CORS_ORIGINS` podem chamar a API pelo navegador.
 - **Código dividido por responsabilidade:** rotas, regras de negócio, modelos, esquemas de dados e segurança em arquivos separados.
+- **Testes automatizados:** 27 testes com pytest cobrem as regras de horário e as rotas, usando um banco temporário. Rodam sozinhos no GitHub Actions a cada push.
 
 ## 🛠️ Tecnologias
 
@@ -101,7 +102,7 @@ Para usar um MySQL na nuvem em outro ambiente, rode o `schema_nuvem.sql`, aponte
 - [x] Rotas públicas e painel com login
 - [x] Proteção contra horários duplicados
 - [x] Publicar a API na nuvem
-- [ ] Testes automatizados
+- [x] Testes automatizados
 - [ ] Limite de tentativas de login
 
 ## 👤 Autor
