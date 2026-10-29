@@ -23,6 +23,12 @@ def login(client):
 
 # ---------- rotas públicas ----------
 
+def test_saude_confirma_api_e_banco(client):
+    resposta = client.get("/saude")
+    assert resposta.status_code == 200
+    assert resposta.json() == {"status": "ok", "banco": "ok"}
+
+
 def test_lista_servicos_e_barbeiros(client):
     assert len(client.get("/servicos").json()) == 3
     assert len(client.get("/barbeiros").json()) == 2
