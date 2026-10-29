@@ -20,6 +20,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
+from app import limite
 from app.database import Base, get_db
 from app.main import app
 from app.models import Barbeiro, Cliente, Servico, Usuario
@@ -46,6 +47,12 @@ def relogio(monkeypatch):
     """Congela a data/hora para os testes não dependerem do dia em que rodam."""
     monkeypatch.setattr("app.regras.agora", lambda: AGORA_FIXO)
     monkeypatch.setattr("app.routers.painel.agora", lambda: AGORA_FIXO)
+
+
+@pytest.fixture(autouse=True)
+def zerar_limite_de_login():
+    """Cada teste começa sem nenhuma tentativa de login anotada."""
+    limite.reiniciar()
 
 
 @pytest.fixture
