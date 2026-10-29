@@ -5,7 +5,7 @@
 API REST do sistema de agendamento da barbearia fictícia **Navalha & Co.**, feita com Python, FastAPI e MySQL. Ela cuida das regras de horários, do cadastro dos agendamentos e do login do painel.
 
 🔗 **Site que usa esta API:** [barbearia-agendamento](https://github.com/abbyyssss/barbearia-agendamento)
-🔗 **API no ar (documentação interativa):** https://barbearia-api-s291.onrender.com/docs
+🔗 **API no ar (documentação interativa):** https://barbearia-api-s29l.onrender.com/
 
 > Projeto de portfólio. A barbearia e os dados são fictícios.
 
