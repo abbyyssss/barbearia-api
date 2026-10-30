@@ -103,7 +103,7 @@ Para usar um MySQL na nuvem em outro ambiente, rode o `schema_nuvem.sql`, aponte
 - [x] Proteção contra horários duplicados
 - [x] Publicar a API na nuvem
 - [x] Testes automatizados
-- [ ] Limite de tentativas de login
+- [x] Limite de tentativas de login
 
 ## 👤 Autor
 
