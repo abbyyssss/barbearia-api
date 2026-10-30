@@ -26,6 +26,105 @@ class BarbeiroOut(BaseModel):
     especialidade: str | None = None
 
 
+class ServicoAdminOut(ServicoOut):
+    ativo: bool
+
+
+class BarbeiroAdminOut(BarbeiroOut):
+    ativo: bool
+
+
+def _limpar_texto(valor: str) -> str:
+    return " ".join(valor.split())
+
+
+def _nome_valido(valor: str | None, rotulo: str) -> str | None:
+    if valor is None:
+        return None
+    valor = _limpar_texto(valor)
+    if len(valor) < 2:
+        raise ValueError(f"Informe o nome do {rotulo}.")
+    return valor
+
+
+def _duracao_valida(valor: int | None) -> int | None:
+    if valor is not None and valor % 5:
+        raise ValueError("A duração deve ser um múltiplo de 5 minutos.")
+    return valor
+
+
+def _especialidade_valida(valor: str | None) -> str | None:
+    if valor is None:
+        return None
+    return _limpar_texto(valor) or None   # texto vazio vira "sem especialidade"
+
+
+class ServicoIn(BaseModel):
+    nome: str = Field(min_length=2, max_length=80)
+    duracao_min: int = Field(ge=15, le=240)
+    preco: float = Field(gt=0, le=10000)
+
+    @field_validator("nome")
+    @classmethod
+    def validar_nome(cls, valor):
+        return _nome_valido(valor, "serviço")
+
+    @field_validator("duracao_min")
+    @classmethod
+    def validar_duracao(cls, valor):
+        return _duracao_valida(valor)
+
+
+class ServicoPatch(BaseModel):
+    """Só os campos enviados são alterados."""
+    nome: str | None = Field(default=None, min_length=2, max_length=80)
+    duracao_min: int | None = Field(default=None, ge=15, le=240)
+    preco: float | None = Field(default=None, gt=0, le=10000)
+    ativo: bool | None = None
+
+    @field_validator("nome")
+    @classmethod
+    def validar_nome(cls, valor):
+        return _nome_valido(valor, "serviço")
+
+    @field_validator("duracao_min")
+    @classmethod
+    def validar_duracao(cls, valor):
+        return _duracao_valida(valor)
+
+
+class BarbeiroIn(BaseModel):
+    nome: str = Field(min_length=2, max_length=60)
+    especialidade: str | None = Field(default=None, max_length=80)
+
+    @field_validator("nome")
+    @classmethod
+    def validar_nome(cls, valor):
+        return _nome_valido(valor, "barbeiro")
+
+    @field_validator("especialidade")
+    @classmethod
+    def validar_especialidade(cls, valor):
+        return _especialidade_valida(valor)
+
+
+class BarbeiroPatch(BaseModel):
+    """Só os campos enviados são alterados. Especialidade vazia apaga o texto."""
+    nome: str | None = Field(default=None, min_length=2, max_length=60)
+    especialidade: str | None = Field(default=None, max_length=80)
+    ativo: bool | None = None
+
+    @field_validator("nome")
+    @classmethod
+    def validar_nome(cls, valor):
+        return _nome_valido(valor, "barbeiro")
+
+    @field_validator("especialidade")
+    @classmethod
+    def validar_especialidade(cls, valor):
+        return _especialidade_valida(valor)
+
+
 class HorariosOut(BaseModel):
     data: date
     horarios: list[str]  # ex.: ["09:00", "09:30"]

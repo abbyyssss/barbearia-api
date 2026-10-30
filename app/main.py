@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.database import get_db
-from app.routers import painel, publico
+from app.routers import cadastros, painel, publico
 
 app = FastAPI(title="Navalha & Co. – API de agendamento", version="1.0.0")
 
@@ -20,6 +20,7 @@ app.add_middleware(
 
 app.include_router(publico.router)
 app.include_router(painel.router)
+app.include_router(cadastros.router)
 
 
 @app.get("/", tags=["Status"])
